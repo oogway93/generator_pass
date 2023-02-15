@@ -1,12 +1,71 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Pass</title>
-</head>
-<body>
-    <p>{{for i in gen_pass}}
-        {{i}}
-    </p>
-</body>
-</html>
+{% extends 'pass/layout.html' %}
+{% block content %}
+
+<div class="col-md-4 offset-md-4">
+    <form
+            action="{% url 'password' %}"
+            class="card card-body p-5 text-light"
+            style="background-color: #121212"
+    >
+        <h1>Password Generator</h1>
+
+        <label for="length_of_pass">Выберите длину пароля:</label>
+        <select name="length_of_pass" id="length_of_pass" class="form-control">
+            <option value="7" selected>7 символов</option>
+            <option value="8">8 символов</option>
+            <option value="9">9 символов</option>
+            <option value="10">10 символов</option>
+            <option value="11">11 символов</option>
+            <option value="12">12 символов</option>
+            <option value="13">13 символов</option>
+            <option value="14">14 символов</option>
+            <option value="15">15 символов</option>
+            <option value="16">16 символов</option>
+
+        </select>
+
+        <div class="form-check form-switch my-2">
+            <label for="uppercase" class="form-check-label">Прописные буквы</label>
+            <input
+                    type="checkbox"
+                    name="uppercase"
+                    id="uppercase"
+                    class="form-check-input"
+            />
+        </div>
+
+        <div class="form-check form-switch my-2">
+            <label for="numbers" class="form-check-label">Цифры</label>
+            <input
+                    type="checkbox"
+                    name="numbers"
+                    id="numbers"
+                    class="form-check-input"
+            />
+        </div>
+
+        <div class="form-check form-switch my-2">
+            <label for="symbols" class="form-check-label">Символы</label>
+            <input
+                    type="checkbox"
+                    name="symbols"
+                    id="symbols"
+                    class="form-check-input"
+            />
+        </div>
+
+        <div class="form-check form-switch my-2">
+            <label for="hard_symbols" class="form-check-label">Усложненные символы</label>
+            <input
+                    type="checkbox"
+                    name="hard_symbols"
+                    id="hard_symbols"
+                    class="form-check-input"
+            />
+        </div>
+
+        <button class="btn btn-primary">Создать пароль</button>
+    </form>
+</div>
+
+{% endblock %}

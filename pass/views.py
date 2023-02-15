@@ -3,27 +3,31 @@ from django.http import HttpResponse
 import random
 
 
-def home(request):
-    return HttpResponse("<h1>Салам</h1>")
-
-
 def generator_pass(request):
     generated_password = ''
 
     lowercase = list('abcdefghijklmnopqrstuvwxyz')
 
-    length_of_pass = int(request.GET.get('length', 10))
+    length_of_pass = int(request.GET.get('length', 7))
 
     if request.GET.get('uppercase'):
-        lowercase.extends(list('ABCDEFGHIJKLMNOPQRSUVWXYZ'))
+        lowercase.extend(list('ABCDEFGHIJKLMNOPQRSUVWXYZ'))
     if request.GET.get('numbers'):
-        lowercase.extends(list('0123456789'))
+        lowercase.extend(list('0123456789'))
     if request.GET.get('symbols'):
-        lowercase.extends(list('!@#$%^&*'))
+        lowercase.extend(list('!@#$%^&*'))
     if request.GET.get('hard_symbols'):
-        lowercase.extends(list('~()_-+={[}]|\:;><.?/'))
+        lowercase.extend(list('~()_-+={[}]|\:;><.?/'))
 
     for i in range(length_of_pass):
         generated_password += random.choice(lowercase)
 
-    return render(request, 'pass.home.html', {'gen_pass': generated_password})
+    return render(request, 'pass/password.html', {'gen_pass': generated_password})
+
+
+def home(request):
+    return render(request, 'pass/home.html')
+
+
+def about(request):
+    return render(request, 'pass/about.html')
